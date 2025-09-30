@@ -1,4 +1,4 @@
-# seeds/views.py
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db import transaction
@@ -21,7 +21,7 @@ from .permissions import user_is_staff_role, user_is_auditor
 def seedbatch_list(request):
     qs = SeedBatch.objects.all()
 
-    # Annotate recommended flag for filter/sort
+   
     today = timezone.localdate()
     cutoff = today + timezone.timedelta(days=RECOMMEND_WINDOW_DAYS)
     qs = qs.annotate(
@@ -120,7 +120,6 @@ def batchphoto_upload(request):
         form = BatchPhotoMultiUploadForm()
     return render(request, "seeds/batchphoto_upload.html", {"form": form})
 
-# ----- Outgoing transaction create (atomic, prevents negative) -----
 
 @login_required
 @user_passes_test(user_is_staff_role)

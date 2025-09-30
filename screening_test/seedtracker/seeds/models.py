@@ -1,11 +1,11 @@
-# seeds/models.py
+
 from django.conf import settings
 from django.db import models
 from django.db.models import F
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
-# Configurable window in days (default 30)
+
 RECOMMEND_WINDOW_DAYS = getattr(settings, "RECOMMEND_WINDOW_DAYS", 30)
 
 
@@ -64,13 +64,13 @@ class OutgoingTransaction(models.Model):
         ordering = ["-date", "-id"]
 
     def clean(self):
-        # Prevent zero/negative quantities
+   
         if self.quantity_grams is None or self.quantity_grams <= 0:
             raise ValidationError(
                 {"quantity_grams": "Quantity must be a positive amount in grams."}
             )
 
-        # Prevent negative inventory (conservative check; final check happens atomically in view/service)
+     
         if (
             self.batch
             and self.batch.weight_grams is not None

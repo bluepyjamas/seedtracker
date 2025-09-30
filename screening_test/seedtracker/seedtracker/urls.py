@@ -11,6 +11,6 @@ urlpatterns = [
     path("", include(("seeds.urls", "seeds"), namespace="seeds")),
 ]
 
-# ✅ Add this at the bottom
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

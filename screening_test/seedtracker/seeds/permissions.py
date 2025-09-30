@@ -1,4 +1,4 @@
-# seeds/permissions.py
+
 from django.contrib.auth.models import Group
 
 STAFF_GROUP = "Staff"
